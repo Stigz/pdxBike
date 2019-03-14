@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"strings"
+	"strconv"
 )
 
 func main() {
@@ -64,6 +65,9 @@ I  aid=2935 work=a830d2c0e398d83359a2cfd237a849e5 facebook_audience_populate  ad
 I  aid=2935 work=a830d2c0e398d83359a2cfd237a849e5 facebook_audience_populate  added 0 users removed 0 users ,`
 
 	r := csv.NewReader(strings.NewReader(in))
+	adds := []int
+	subs := []int
+	totals := []int
 
 	for {
 		record, err := r.Read()
@@ -78,8 +82,13 @@ I  aid=2935 work=a830d2c0e398d83359a2cfd237a849e5 facebook_audience_populate  ad
 		for _, rec := range record {
 			splitRecord := []string{}
 			splitRecord = strings.Split(rec, "")
+			var added
 			for _, split := range splitRecord {
-				isInt, ok := split.(int)
+				i, _ := strconv.Atoi(split)
+				if err == nil {
+					added = true
+					
+				}
 			}
 		}
 	}
